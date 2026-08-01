@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR.4t - المتجر الشخصي</title>
+    <style>
+        /* إعدادات الخلفية والألوان العامة المستوحاة من الموقع المذكور */
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* حاوية الموقع الرئيسية */
+        .container {
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* الشعار والاسم المتحرك */
+        .profile-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        .profile-subtitle {
+            color: #8a99ad;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        /* تأثير مشغل الموسيقى (الوهمي لتشابه شكل الموقع المذكور) */
+        .now-playing {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            color: #a0aec0;
+        }
+
+        .audio-controls {
+            margin-top: 8px;
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            color: #ff4b2b;
+        }
+
+        /* قسم المنتجات المعروضة للشراء */
+        .products-section {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            text-align: right;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff4b2b;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 0 0 8px 0;
+            color: #ffffff;
+        }
+
+        .product-desc {
+            font-size: 0.95rem;
+            color: #a0aec0;
+            margin: 0 0 15px 0;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: #44ff66;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* زر الشراء المجاني عبر الواتساب */
+        .buy-btn {
+            display: inline-block;
+            width: 100%;
+            background: linear-gradient(45deg, #128c7e, #25d366);
+            color: white;
+            text-decoration: none;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            transition: opacity 0.2s;
+        }
+
+        .buy-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* إحصائيات وعداد الزوار الوهمي */
+        .footer-stats {
+            margin-top: 40px;
+            color: #4a5568;
+            font-size: 0.85rem;
+        }
+
+        /* حركات التوهج */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- الهيدر والاسم الاستايل المظلم -->
+        <div class="profile-title">M R . 4 t</div>
+        <div class="profile-subtitle">Developer • Creator • Store</div>
+
+        <!-- شكل مشغل الموسيقى مثل الموقع الأصلي -->
+        <div class="now-playing">
+            <div>🎵 Strangers - Now Playing</div>
+            <div class="audio-controls">▮▮ 💬 ▶ 👁 50+</div>
+        </div>
+
+        <!-- قسم السلع المعروضة للبيع -->
+        <div class="products-section">
+            
+            <!-- منتج 1 (تستطيع تغيير البيانات بسهولة) -->
+            <div class="product-card">
+                <div class="product-title">حساب بروتون بريميوم (مثال)</div>
+                <div class="product-desc">حساب بكامل الصلاحيات وضمان كامل لمدة سنة كاملة بدون انقطاع.</div>
+                <div class="product-price">10$ دولار فقط</div>
+                <!-- استبدل الرقم 201000000000 برقم هاتفك مع كود الدولة -->
+                <a href="https://wa.me" target="_blank" class="buy-btn">شراء الآن عبر الواتساب</a>
+            </div>
+
+            <!-- منتج 2 -->
+            <div class="product-card">
+                <div class="product-title">كود تفعيل لعبة رقمية</div>
+                <div class="product-desc">كود أصلي يعمل على جميع المنصات (Steam / Xbox / PS5).</div>
+                <div class="product-price">15$ دولار فقط</div>
+                <a href="https://wa.me" target="_blank" class="buy-btn">شراء الآن عبر الواتساب</a>
+            </div>
+
+        </div>
+
+        <div class="footer-stats">
+            BY MR.4t © 2026
+        </div>
+    </div>
+
+</body>
+</html>
