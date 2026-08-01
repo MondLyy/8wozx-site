@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8wozx</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050510;color:#fff;overflow:hidden;font-family:'Cairo',sans-serif}
+#bgvid{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}
 
+.names-overlay{position:fixed;top:5%;left:50%;transform:translateX(-50%);z-index:25;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;pointer-events:none;width:90%}
+.fancy-name{font-family:'Amiri',serif;font-size:32px;font-weight:700;background:linear-gradient(135deg,#ff6b9d,#8338ec,#00ced1,#ffd700,#ff6b9d);background-size:400% 400%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:goldShimmer 4s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(131,56,236,0.4)) drop-shadow(0 0 40px rgba(0,206,209,0.3)) drop-shadow(0 2px 6px rgba(0,0,0,0.8));text-align:center;line-height:1.5;text-shadow:none}
+.fancy-name .icon{font-style:normal;margin:0 6px;font-size:18px}
+@keyframes goldShimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+.main-title{position:fixed;bottom:12%;left:50%;transform:translateX(-50%);z-index:15;text-align:center;pointer-events:none}
+.main-title h1{font-size:56px;font-weight:900;letter-spacing:10px;background:linear-gradient(135deg,#00ced1,#ff6b9d,#8338ec,#ffd700,#00ced1);background-size:400% 400%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:goldShimmer 5s ease infinite;filter:drop-shadow(0 0 30px rgba(0,206,209,0.3)) drop-shadow(0 0 60px rgba(131,56,236,0.15));font-family:'Amiri',serif;font-style:italic;text-shadow:none}
+.main-title .line{width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(0,206,209,0.4),rgba(131,56,236,0.4),transparent);margin:12px auto}
+.main-title .sub{font-size:13px;color:rgba(0,206,209,0.4);letter-spacing:8px;text-transform:uppercase;font-weight:300;font-family:'Cairo',sans-serif}
+
+.corner-l{position:fixed;bottom:25px;left:25px;z-index:15;font-size:12px;font-weight:700;letter-spacing:2px;color:rgba(255,107,157,0.25);font-family:'Amiri',serif;pointer-events:none;writing-mode:vertical-rl}
+.corner-r{position:fixed;top:25px;right:25px;z-index:15;font-size:12px;font-weight:700;letter-spacing:2px;color:rgba(255,107,157,0.25);font-family:'Amiri',serif;pointer-events:none;writing-mode:vertical-rl}
+
+#start{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(5,5,10,0.93);display:flex;align-items:center;justify-content:center;z-index:30;cursor:pointer;backdrop-filter:blur(2px)}
+#start span{font-size:20px;color:#ff6b9d;text-shadow:0 0 20px rgba(255,107,157,0.4);font-family:'Cairo',sans-serif;letter-spacing:2px}
+#start span::after{content:'|';animation:b 1s step-end infinite;color:rgba(255,107,157,0.5)}
+@keyframes b{50%{opacity:0}}
+
+.profile{position:fixed;top:55%;left:50%;transform:translate(-50%,-50%);width:620px;max-width:92vw;background:linear-gradient(145deg,rgba(25,10,20,0.92),rgba(15,5,12,0.95));border:1px solid rgba(255,107,157,0.12);padding:28px;border-radius:20px;z-index:20;display:none;flex-direction:column;gap:16px;box-shadow:0 0 60px rgba(255,107,157,0.06),0 0 120px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,107,157,0.08)}
+.header{display:flex;align-items:center;gap:18px}
+.av-wrap{position:relative;width:110px;height:110px;flex-shrink:0}
+.av-wrap::after{content:'';position:absolute;top:-6px;left:-6px;right:-6px;bottom:-6px;border-radius:50%;background:conic-gradient(from 0deg,#ff6b9d,#c084fc,#ffb3d9,#ff6b9d);animation:spin 3s linear infinite;filter:blur(1px);box-shadow:0 0 25px rgba(255,107,157,0.3)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.av{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#2a0a1a,#150510);display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;border:2px solid rgba(255,107,157,0.3);box-shadow:inset 0 0 30px rgba(255,107,157,0.05);position:relative;z-index:1;overflow:hidden}
+.av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.status-dot{position:absolute;bottom:3px;right:3px;width:16px;height:16px;border-radius:50%;border:3px solid #0f0c19;z-index:2}
+.status-dot.online{background:#00ff88;box-shadow:0 0 10px #00ff88}
+.status-dot.idle{background:#ffbb00;box-shadow:0 0 10px #ffbb00}
+.status-dot.dnd{background:#ff3333;box-shadow:0 0 10px #ff3333}
+.status-dot.offline{background:#555}
+.info{flex:1}
+.namewrap{display:flex;align-items:center;gap:10px;margin-bottom:5px;flex-wrap:wrap}
+#name{font-size:24px;font-weight:700;color:#ff6b9d;text-shadow:0 0 15px rgba(255,107,157,0.5)}
+.guild-tag{background:rgba(255,107,157,0.08);border:1px solid rgba(255,107,157,0.2);padding:2px 8px;border-radius:8px;font-size:10px;color:rgba(255,107,157,0.7);font-weight:700;letter-spacing:1px}
+.bges{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.bg-i{background:rgba(255,107,157,0.06);border:1px solid rgba(255,107,157,0.15);padding:3px 10px;border-radius:12px;font-size:10px;color:rgba(255,107,157,0.7);font-weight:600}
+#bio{color:rgba(255,255,255,0.5);font-size:13px;min-height:18px}
+#bio::after{content:'|';animation:b 1s step-end infinite;color:rgba(255,107,157,0.5)}
+#dstatus{font-size:11px;color:rgba(255,255,255,0.3);margin-top:4px;display:flex;align-items:center;gap:6px}
+.dstatus-dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.sep{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,107,157,0.2),transparent)}
+
+.music-bar{display:flex;align-items:center;gap:12px;padding:14px 18px;background:linear-gradient(135deg,rgba(255,107,157,0.03),rgba(0,0,0,0.3));border-radius:16px;border:1px solid rgba(255,107,157,0.1);box-shadow:0 4px 25px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,107,157,0.05)}
+.music-disc{width:44px;height:44px;border-radius:50%;background:conic-gradient(from 0deg,#ff6b9d,#ff6b9d,#c084fc,#ff6b9d);animation:spin 3s linear infinite;flex-shrink:0;position:relative;box-shadow:0 0 20px rgba(255,107,157,0.2)}
+.music-disc::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:16px;height:16px;background:#0f0c19;border-radius:50%;border:2px solid rgba(255,107,157,0.2)}
+.music-info{flex:1}
+.music-title{font-size:14px;font-weight:700;color:#ff6b9d}
+.music-artist{font-size:10px;color:rgba(255,107,157,0.4);letter-spacing:2px;text-transform:uppercase}
+.music-eq{display:flex;align-items:flex-end;gap:2px;height:18px;margin-left:6px}
+.music-eq span{width:3px;background:linear-gradient(to top,#ff6b9d,#ff6b9d);border-radius:2px;animation:eq .8s ease-in-out infinite alternate}
+.music-eq span:nth-child(1){height:6px;animation-delay:0s}
+.music-eq span:nth-child(2){height:12px;animation-delay:.15s}
+.music-eq span:nth-child(3){height:8px;animation-delay:.3s}
+.music-eq span:nth-child(4){height:16px;animation-delay:.1s}
+.music-eq span:nth-child(5){height:10px;animation-delay:.25s}
+@keyframes eq{0%{height:3px}100%{height:18px}}
+.music-btn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,107,157,0.2);background:linear-gradient(135deg,rgba(255,107,157,0.1),rgba(255,107,157,0.08));color:#ff6b9d;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .3s;box-shadow:0 0 15px rgba(255,107,157,0.1)}
+.music-btn:hover{background:linear-gradient(135deg,rgba(255,107,157,0.25),rgba(255,107,157,0.2));transform:scale(1.1);box-shadow:0 0 25px rgba(255,107,157,0.2)}
+
+.links{display:flex;gap:12px;justify-content:center;background:linear-gradient(135deg,rgba(255,107,157,0.02),rgba(0,0,0,0.3));border-radius:25px;padding:12px;border:1px solid rgba(255,107,157,0.06)}
+.lnk{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;background:rgba(255,107,157,0.04);border:1px solid rgba(255,107,157,0.1);transition:all .3s;color:#fff}
+.lnk:hover{transform:scale(1.2);background:rgba(255,107,157,0.12);box-shadow:0 0 20px rgba(255,107,157,0.15)}
+.vc{display:flex;align-items:center;gap:8px;justify-content:center;background:rgba(255,107,157,0.03);padding:8px 16px;border-radius:25px;font-size:12px;border:1px solid rgba(255,107,157,0.06);color:rgba(255,107,157,0.5)}
+.ft{text-align:center;font-size:11px;color:rgba(255,107,157,0.15);letter-spacing:3px}
+.ctrl{position:fixed;top:20px;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:12px;z-index:25;background:rgba(10,8,18,0.9);padding:8px 16px;border-radius:25px;border:1px solid rgba(255,107,157,0.1)}
+.vol{display:flex;align-items:center;gap:8px}
+.vol svg{width:16px;height:16px;cursor:pointer;color:rgba(255,107,157,0.6)}
+.sli{-webkit-appearance:none;width:70px;height:3px;border-radius:3px;background:rgba(255,107,157,0.1);outline:none}
+.sli::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;border-radius:50%;background:#ff6b9d;cursor:pointer;box-shadow:0 0 8px rgba(255,107,157,0.4)}
+#yt-player{display:none}
+</style>
+</head>
+<body>
+<video id="bgvid" autoplay muted loop playsinline preload="metadata" style="will-change:transform"><source src="bg.mp4" type="video/mp4"></video>
+
+<div class="names-overlay">
+</div>
+
+<div class="main-title">
+    <h1>8 w o z x</h1>
+    <div class="line"></div>
+    <div class="sub">Developer &bull; Creator</div>
+</div>
+
+<div class="corner-l">8wozx</div>
+<div class="corner-r">8wozx</div>
+
+<div id="start"><span></span></div>
+
+<div class="profile" id="p">
+    <div class="header">
+        <div class="av-wrap">
+            <div class="av" id="avatar">8wozx</div>
+            <div class="status-dot offline" id="sdot"></div>
+        </div>
+        <div class="info">
+            <div class="namewrap">
+                <div id="name"></div>
+                <span class="guild-tag" id="gtag" style="display:none"></span>
+            </div>
+            <div id="dstatus"></div>
+            <div class="bges" id="bges"></div>
+            <div id="bio" style="margin-top:6px"></div>
+        </div>
+    </div>
+    <div class="sep"></div>
+    <div class="music-bar">
+        <div class="music-disc"></div>
+        <div class="music-info">
+            <div class="music-title">Strangers</div>
+            <div class="music-artist">Now Playing</div>
+        </div>
+        <div class="music-eq"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="music-btn" id="playBtn" onclick="togglePlay()">&#9646;&#9646;</div>
+    </div>
+    <div class="links">
+        <a class="lnk" href="https://www.snapchat.com/@kb-zty" target="_blank">&#128123;</a>
+        <a class="lnk" href="https://www.tiktok.com/@8wozx" target="_blank">&#127925;</a>
+        <a class="lnk" href="#" onclick="event.preventDefault();navigator.clipboard.writeText('8wozx');this.textContent='&#10003;';setTimeout(()=>this.textContent='&#128172;',1000)">&#128172;</a>
+        <a class="lnk" href="https://youtu.be/y7eYq8FeUTw" target="_blank">&#9654;</a>
+    </div>
+    <div class="vc">&#128065; <span id="vc">0</span></div>
+    <div class="ft">BY 8wozx</div>
+</div>
+
+<div class="ctrl" id="ctrl">
+    <div class="vol">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+        <input id="vs" class="sli" type="range" min="0" max="100" step="1" value="50">
+    </div>
+</div>
+
+<script>
+var DISCORD_ID='1006248262174519357';
+var player=new Audio('song.webm?v=4');
+player.loop=true;player.volume=0.5;var playing=false;
+
+function togglePlay(){
+    if(playing){player.pause();playing=false;document.getElementById('playBtn').innerHTML='&#9654;'}
+    else{player.play();playing=true;document.getElementById('playBtn').innerHTML='&#9646;&#9646;'}
+}
+
+var st=document.getElementById('start'),p=document.getElementById('p');
+var nEl=document.getElementById('name'),bEl=document.getElementById('bio'),vc=document.getElementById('vc'),ctrl=document.getElementById('ctrl');
+var avatarEl=document.getElementById('avatar'),sdot=document.getElementById('sdot'),bgesEl=document.getElementById('bges'),dstatusEl=document.getElementById('dstatus'),gtag=document.getElementById('gtag');
+
+var v=localStorage.getItem('v')||182309;
+if(!localStorage.getItem('vd')){v=parseInt(v)+1;localStorage.setItem('v',v);localStorage.setItem('vd','1')}
+vc.textContent=parseInt(v).toLocaleString();
+
+var sm='Click to enter....',si=0;
+function ts2(){if(si<sm.length){si++;document.querySelector('#start span').textContent=sm.slice(0,si);setTimeout(ts2,80)}}
+ts2();
+
+var entered=0;
+st.onclick=function(){
+    if(entered)return;entered=1;
+    st.style.opacity='0';st.style.transition='opacity 0.6s';
+    setTimeout(function(){st.style.display='none'},600);
+    p.style.display='flex';ctrl.style.display='flex';
+    player.play();playing=true;document.getElementById('playBtn').innerHTML='&#9646;&#9646;';
+    tn();tb();fetchDiscord();
+    setInterval(fetchDiscord,15000);
+};
+
+document.getElementById('vs').oninput=function(){player.volume=parseInt(this.value)/100};
+
+function fetchDiscord(){
+    fetch('https://api.lanyard.rest/v1/users/'+DISCORD_ID)
+    .then(function(r){return r.json()})
+    .then(function(res){
+        if(!res.success)return;
+        var d=res.data,u=d.discord_user;
+        if(u.avatar){
+            var ext=u.avatar.startsWith('a_')?'gif':'png';
+           avatarEl.innerHTML='<img src="https://cdn.discordapp.com/avatars/'+u.id+'/'+u.avatar+'.'+ext+'?size=256" alt="Avatar">';
+
+
+        }
+        nEl.textContent=u.display_name||u.username||'8wozx';
+        if(u.primary_guild&&u.primary_guild.tag){gtag.style.display='inline';gtag.textContent=u.primary_guild.tag}
+        var status=d.discord_status||'offline';
+        sdot.className='status-dot '+status;
+        var st2={online:'Online',idle:'Idle',dnd:'Do Not Disturb',offline:'Offline'};
+        var sc={online:'#00ff88',idle:'#ffbb00',dnd:'#ff3333',offline:'#555'};
+        dstatusEl.innerHTML='<span class="dstatus-dot" style="background:'+sc[status]+'"></span>Discord: '+(st2[status]||'Offline');
+        var bg='';bg+='<span class="bg-i">&#9889; VERIFIED</span>';bg+='<span class="bg-i">&#128736; DEVELOPER</span>';
+        var f=u.public_flags||0;
+        if(f&2)bg+='<span class="bg-i">&#11088; PARTNER</span>';
+        if(f&4)bg+='<span class="bg-i">&#127968; HYPESQUAD</span>';
+        if(f&8)bg+='<span class="bg-i">&#128027; BUG HUNTER</span>';
+        if(f&512)bg+='<span class="bg-i">&#127775; EARLY SUPPORTER</span>';
+        if(f&131072)bg+='<span class="bg-i">&#128027; BUG HUNTER LVL2</span>';
+        if(f&4194304)bg+='<span class="bg-i">&#128187; ACTIVE DEVELOPER</span>';
+        if(d.listening_to_spotify&&d.spotify)bg+='<span class="bg-i" style="background:rgba(30,215,96,0.08);border-color:rgba(30,215,96,0.2);color:#1ed760">&#127925; Spotify</span>';
+        bgesEl.innerHTML=bg;
+    }).catch(function(e){});
+}
+
+var ns='8wozx',ni=0,nd=0,nt='';
+function tn(){
+    if(!nd&&ni<ns.length){nt=ns.slice(0,ni+1);ni++}
+    else if(nd&&ni>0){nt=ns.slice(0,ni-1);ni--}
+    else if(ni===ns.length){nd=1;setTimeout(tn,6000);return}
+    else if(ni===0){nd=0}
+    nEl.textContent=nt;
+    setTimeout(tn,nd?70:180);
+}
+
+var bios=['Developer \u00B7 Creator \u00B7 Dreamer','Building cool stuff','Discord: 8wozx'],bc=0,bd=0,bt='',bm=0;
+function tb(){
+    if(!bd&&bc<bios[bm].length){bt=bios[bm].slice(0,bc+1);bc++}
+    else if(bd&&bc>0){bt=bios[bm].slice(0,bc-1);bc--}
+    else if(bc===bios[bm].length){bd=1;setTimeout(tb,2500);return}
+    else if(bc===0){bd=0;bm=(bm+1)%bios.length}
+    bEl.textContent=bt;
+    setTimeout(tb,bd?40:90);
+}
+</script>
+</body>
+</html>
